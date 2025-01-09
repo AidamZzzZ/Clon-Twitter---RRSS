@@ -26,10 +26,46 @@
             </div>
             <div class="mt-3 text-center">  <span class="mx-3">Tweets <strong>123</strong> </span>  <span class="mx-3"> Seguidores <strong>{{ profile.count_following }}</strong></span> <span class="mx-3"> Siguiendo <strong>{{ profile.follows.all|length }}</strong></span> </div>
             <hr class="my-4">
-            <div class="profile-divider"></div> <div class="mt-3">
-                <p>Aquí iría el contenido principal del perfil.</p>
+            <div class="profile-divider"></div> <div class="mt-3">    
             </div>            
     	</div>
 	</div>
 </div>
+<div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8 container-posts">
+                {% for post in posts %}
+                    <div class="post-container position-relative">
+                        <div class="dropdown position-absolute top-0 end-0 mt-2">
+                          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          </a>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'update-post' post.pk %}">Update post</a></li>
+                            <li><a class="dropdown-item" href="{% url 'delete-post' post.pk %}">Delete post</a></li>
+                        </div>
+                        <div class="post-header">
+                            <img src="{{ post.user.photo.url }}" alt="Avatar" class="profile-avatar-mini">
+                            <p style="margin-bottom: 0;">{{ post.user.username }}</p>
+                        </div>
+                        <div class="post-content">
+                            <p>{{ post.content }}</p>
+                            {% if post.img %}
+                                <img src="{{ post.img.url }}" alt="Imagen del post" class="post-image">
+                            {% endif %}
+                        </div>
+                        <div class="post-actions">
+                            <div>
+                                <a href="#">Me gusta</a>
+                                <a href="#">Comentar</a>
+                                <a href="#">Compartir</a>
+                            </div>
+                            <small>{{ post.created_at }}</small>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No hay publicaciones para mostrar.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

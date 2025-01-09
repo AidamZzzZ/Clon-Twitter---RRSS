@@ -7,3 +7,83 @@
     display: block;
     margin: 20px auto;
 }
+
+.post-form-container {
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 600px; /* Ancho similar a la columna de Twitter */
+    max-width: 95%; /* Para que se ajuste a pantallas más pequeñas */
+}
+
+.post-form-container textarea {
+    resize: vertical; /* Permite redimensionar verticalmente el textarea */
+    min-height: 100px; /* Altura mínima del textarea */
+}
+.profile-avatar-mini {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.post-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border: 1px solid #e1e8ed; /* Borde sutil */
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.profile-avatar-mini {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.post-content {
+    margin-bottom: 10px;
+}
+
+.post-image {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Evita espacios extra debajo de la imagen */
+    margin: 10px auto; /* Centra la imagen */
+    border-radius: 8px; /* Bordes redondeados para la imagen */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-between; /* Espacia las acciones */
+    align-items: center;
+    color: #657786; /* Color de los iconos */
+}
+
+.post-actions a {
+    color: inherit; /* Hereda el color del contenedor */
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+.container-posts{
+    max-width: 600px;
+}

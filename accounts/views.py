@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import Profile
+from posts.models import Post
 
 # Create your views here.
 class UserRegisterView(CreateView):
@@ -36,9 +37,11 @@ def home(request):
 def profile_view(request):
 	user_instance = request.user.pk
 	profile_instance = get_object_or_404(Profile, pk=user_instance)
+	posts_instances = Post.objects.filter(user=user_instance)
 
 	context = {
-		'profile': profile_instance
+		'profile': profile_instance,
+		'posts': posts_instances
 	}
 
 	return render(request, 'accounts/profile.html', context)

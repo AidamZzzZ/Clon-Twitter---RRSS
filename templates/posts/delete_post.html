@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="post-form-container">
+                <h2 class="mb-4">Delete Post</h2>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="post-header">
+                        <img src="{{ request.user.photo.url }}" alt="Avatar" class="profile-avatar-mini">
+                        <p style="margin-bottom: 0;">{{ request.user.username }}</p>
+                    </div>
+					<p>Are you sure to delete this post?</p>
+					<a class="btn btn-secondary" href="{% url 'profile' %}">cancel</a>
+                    <button type="submit" class="btn btn-primary mt-auto">delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
