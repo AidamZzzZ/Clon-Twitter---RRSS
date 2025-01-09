@@ -29,8 +29,20 @@ def home(request):
 def post_detail(request, pk):
 	post_instance = get_object_or_404(Post, pk=pk)
 
+	if request.method == 'POST':
+		comment = CommentForm(request.POST)
+		if comment.is_valid():
+			comment = comment.save(commit=False)
+			comment.user = request.user
+			comment.post = post_instance
+			comment.save()
+			return redirect('detail-post', pk=pk)
+	else:
+		comment = CommentForm()
+
 	context = {
-		"post": post_instance
+		"post": post_instance,
+		"commentForm": comment
 	}
 
 	return render(request, "posts/detail_post.html", context)
@@ -66,3 +78,27 @@ def post_delete(request, pk):
 	return render(request, "posts/delete_post.html", context)
 
 # COMMENT
+def comment_update(request, pk):
+	comment_instance = get_object_or_404(Comment, pk=pk)
+	
+	if request.method == "POST":
+		form = CommentForm(request.POST, instance=comment_instance)
+		if form.is_valid():
+			form.save()
+			return redirect('detail-post', pk=comment_instance.post.pk)
+	else:
+		form = CommentForm(instance=comment_instance)
+
+	context = {
+		'form':form 
+	}
+	return render(request, "posts/comment_update.html", context)
+
+def comment_delete(request, pk):
+	comment_instance = get_object_or_404(Comment, pk=pk)
+
+	if request.method == "POST":
+		comment_instance.delete()
+		return redirect('detail-post', pk=comment_instance.post.pk)
+
+	return render(request, "posts/comment_delete.html")
