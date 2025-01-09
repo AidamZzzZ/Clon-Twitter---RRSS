@@ -1,0 +1,9 @@
+.form-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 12px 12px rgba(0, 0, 0, 0.2);
+    width: 400px; /* Ancho fijo para el formulario */
+    display: block;
+    margin: 20px auto;
+}
