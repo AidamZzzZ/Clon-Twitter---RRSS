@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, post_detail, post_update, post_delete, comment_update, comment_delete
+from .views import home, post_detail, post_update, post_delete, comment_update, comment_delete, post_like, SearchView
 
 urlpatterns = [
 	path('', home, name="home"),
@@ -8,4 +8,6 @@ urlpatterns = [
 	path('post-delete/<int:pk>', post_delete, name="delete-post"),
 	path('comment-update/<int:pk>', comment_update, name="update-comment"),
 	path('comment-delete/<int:pk>', comment_delete, name="delete-comment"),
+	path('post-like/<int:pk>', post_like, name="post-like"),
+	path('search/', SearchView.as_view(), name="search"),
 ]

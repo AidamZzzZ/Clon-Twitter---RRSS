@@ -19,9 +19,12 @@
                         </div>
                         <div class="post-actions">
                             <div>
-                                <a href="#">Me gusta</a>
-                                <a href="#">Comentar</a>
-                                <a href="#">Compartir</a>
+                                {% if user in post.likes.all %}
+                                <span class="mr3-2">{{ post.number_of_likes }}</span><a href="{% url 'post-like' post.pk %}"><i class="fa-solid fa-heart"></i></a>
+                                {% else %}
+                                <span class="mr3-2">{{ post.number_of_likes }}</span><a href="{% url 'post-like' post.pk %}"><i class="fa-regular fa-heart"></i></a>
+                                {% endif %}
+                                <span>{{ post.comments.all|length }}</span> <i class="fa-regular fa-comment"></i>
                             </div>
                             <small>{{ post.created_at }}</small>
                         </div>

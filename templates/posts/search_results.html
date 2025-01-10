@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+        <div class="search-results-container">
+                <h2>Usuarios</h2>
+                {% for user in results.users %}
+                    <a href="{% url 'user_detail' user.pk %}" style="text-decoration: none; color: inherit;">
+                    <div class="user-result">
+                        <img src="{{ user.photo.url }}" alt="Avatar" class="profile-avatar-mini">
+                        <p style="margin-bottom: 0;">{{ user.username }}</p>
+                    </div>
+                    </a>
+                {% endfor %}
+                <h2>Publicaciones</h2>
+                {% for post in results.posts %}
+                    <div class="post-result">
+                        <div class="post-header">
+                            <img src="{{ post.user.photo.url }}" alt="Avatar" class="profile-avatar-mini">
+                            <p style="margin-bottom: 0;">{{ post.user.username }}</p>
+                        </div>
+                        <p>{{ post.content }}</p>
+                        {% if post.img %}
+                            <img src="{{ post.img.url }}" alt="Imagen del post" class="post-image">
+                        {% endif %}
+                    </div>
+                {% endfor %}
+        </div>
+    </div>
+{% endblock %}

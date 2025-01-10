@@ -1,0 +1,32 @@
+.user-result {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #e1e8ed;
+}
+.user-result:last-child {
+    border-bottom: none; /* Elimina el borde inferior del último elemento */
+}
+.profile-avatar-mini {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+.post-result {
+    padding: 20px;
+    border-bottom: 1px solid #e1e8ed;
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.post-result:last-child {
+    border-bottom: none;
+}
+
+.no-results {
+    text-align: center;
+    padding: 20px;
+}
