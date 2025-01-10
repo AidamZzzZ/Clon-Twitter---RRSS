@@ -124,7 +124,7 @@ class SearchView(ListView):
 	def get_queryset(self):
 		query = self.request.GET.get("query", "")
 		if query:
-			users = Profile.objects.filter(Q(username__icontains=query))
+			users = Profile.objects.filter(Q(username__icontains=query))[:3]
 			posts = Post.objects.filter(Q(content__icontains=query))
 			return {"users": users, "posts": posts}
 		return {"users": Profile.objects.none(), "posts": Post.objects.none()}
