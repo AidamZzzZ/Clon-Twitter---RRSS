@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="post-form-container">
+                <h2 class="mb-4">Update Post</h2>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="post-header">
+                        <img src="{{ request.user.photo.url }}" alt="Avatar" class="profile-avatar-mini">
+                        <p style="margin-bottom: 0;">{{ request.user.username }}</p>
+                    </div>
+                    {{ form|crispy }}
+
+                    <button type="submit" class="btn btn-primary w-100">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
