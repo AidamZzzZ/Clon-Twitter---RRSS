@@ -3,6 +3,7 @@ from django.views.generic import ListView
 from django.http import HttpResponseRedirect
 from django.urls import reverse,reverse_lazy
 from django.views.generic.edit import UpdateView
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import PostForm, CommentForm, searchForm
@@ -51,6 +52,7 @@ def post_detail(request, pk):
 
 	return render(request, "posts/detail_post.html", context)
 
+@login_required
 def post_update(request, pk):
 	post_instance = get_object_or_404(Post, pk=pk)
 
@@ -67,6 +69,7 @@ def post_update(request, pk):
 	}
 	return render(request, "posts/post_update.html", context)
 
+@login_required
 def post_delete(request, pk):
 	post_instance = get_object_or_404(Post, pk=pk)
 	user_instance = request.user.pk
@@ -82,6 +85,7 @@ def post_delete(request, pk):
 	return render(request, "posts/delete_post.html", context)
 
 # COMMENT
+@login_required
 def comment_update(request, pk):
 	comment_instance = get_object_or_404(Comment, pk=pk)
 	
@@ -98,6 +102,7 @@ def comment_update(request, pk):
 	}
 	return render(request, "posts/comment_update.html", context)
 
+@login_required
 def comment_delete(request, pk):
 	comment_instance = get_object_or_404(Comment, pk=pk)
 
@@ -107,6 +112,7 @@ def comment_delete(request, pk):
 
 	return render(request, "posts/comment_delete.html")
 
+@login_required
 def post_like(request, pk):
 	post_instance = get_object_or_404(Post, pk=pk)
 	if post_instance.likes.filter(id=request.user.id).exists():
@@ -116,6 +122,7 @@ def post_like(request, pk):
 
 	return redirect('detail-post', pk=post_instance.pk)
 
+@login_required
 class SearchView(ListView):
 	template_name = "posts/search_results.html"
 	context_object_name = "results"
