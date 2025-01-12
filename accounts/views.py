@@ -14,6 +14,7 @@ class UserRegisterView(CreateView):
 	template_name = 'registration/register.html'
 	success_url = reverse_lazy('login')
 
+@login_required
 class UserUpdateView(UpdateView):
 	form_class = CustomUserChangeForm
 	template_name = 'registration/user_change_form.html'
